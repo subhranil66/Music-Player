@@ -1,0 +1,447 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+ #image1{
+    width: 400px;
+    height: 500px;
+    background-image: url('http://127.0.0.1:4000/images/pexel3.jpeg');
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+body{
+   background-color: darkviolet;
+}
+
+#box{
+   position: relative;
+   top: 0;
+   left: 0;
+   width: 30%;
+   height: 30px;
+   background-color: white;
+   border-radius: 5px;
+}
+
+#scrolls{
+   background-color: #ff3399;
+   float: left;
+   height:640px;
+   width: 340px;
+   margin-left: 10px;
+   overflow: auto;
+/*    white-space: nowrap;*/
+   position: absolute;
+}
+
+#audioname{
+    cursor: pointer;
+    color: black;
+}
+
+#audioname:hover {
+    color: white;
+}
+
+#listen{
+   margin-left: 10px;
+}
+
+#progress{
+   position: absolute;
+   width: 0;
+   height: 100%;
+   background-color: red;
+   float: left;
+   border-radius: 5px;
+}
+
+#replay{
+   font-size: 30px;
+   position: absolute;
+   left: 620px;
+   top: 540px;
+   cursor: pointer;
+}
+
+#play{
+   font-size: 30px;
+   position: absolute;
+   left: 670px;
+   top: 540px;
+   cursor: pointer;
+}
+
+#stop{
+   font-size: 30px;
+   position: absolute;
+   left: 720px;
+   top: 540px;
+   cursor: pointer;
+}
+
+#forward{
+   font-size: 30px;
+   position: absolute;
+   left: 770px;
+   top: 540px;
+   cursor: pointer;
+}
+
+#backward{
+   font-size: 30px;
+   position: absolute;
+   left: 570px;
+   top: 540px;
+   cursor: pointer;
+}
+
+#shuffle{
+    font-size: 30px;
+    position: absolute;
+    left: 520px;
+    top: 540px;
+    cursor: pointer;
+}
+
+#repeat{
+    font-size: 30px;
+    position: absolute;
+    left: 820px;
+    top: 540px;
+    cursor: pointer;
+}
+
+/*
+#volume_slider{
+    -webkit-appearance: none;
+    appearance: none;
+    transform: rotate(180deg);
+    font-size: 30px;
+    position: absolute;
+    left: 820px;
+    top: 540px;
+    cursor: pointer;
+   background: white;
+    box-shadow: 0px 0px 5px red;
+}
+
+#volume_slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 18px;
+    width: 18px;
+    box-shadow: 0px 0px 5px black;
+    background: yellow;
+    border-radius: 50%;
+}
+#volume_slider::-moz-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 18px;
+    width: 18px;
+    box-shadow: 0px 0px 5px black;
+    background: yellow;
+    border-radius: 50%;
+}
+#volume_slider:focus,#add-icon:focus{
+    outline: none;
+}
+*/
+
+        </style>
+        <!-- <link rel="stylesheet" href="http://127.0.0.1:4000/css/style.css"> -->
+    </head>
+    <body onload="myFunction()">
+        <div style="font-size: 40px;color: aqua;float: left;padding: 50px;margin-left: 580px;">Su Fy</div>
+        <div style="font-size: 20px;color: lawngreen;float: left;padding: -60px;margin-top: 125px;margin-left: -175px;">Where Music Lives<br><br><br></div>
+        <div id="scrolls"><center><span style="color:green;font-size:30px;font-family:verdana;"><b>Su_spl</b></span></center><br><br>
+        
+            <% music.forEach(function(item){ %>
+            
+                <li id="audioname" class="audio-name"><%= item.name %></li><br>
+            <% }) %>
+
+        </div>
+        <center>
+            <audio controls id="audio-player" autoplay style="display:none">
+                <source src="<%= data.audio %>" id="audio-src"/>
+            </audio>
+            <div id="image1">
+                <div style="color:white;"> 
+                      <marquee width="100%" direction="left" id="song-name">
+                            <%= data.audio %>
+                    </marquee></div> 
+            </div><br><br><br><br>
+            <i class="fa fa-backward" title="backward" aria-hidden="true" id="backward"></i>
+            <i class="fa fa-reply" title="replay" aria-hidden="true" id="replay"></i>
+            <i class="fa fa-play-circle" title="play" aria-hidden="true" id="play"></i>
+            <i class="fa fa-stop-circle-o" title="stop" aria-hidden="true" id="stop"></i>
+            <i class="fa fa-forward" title="forward" aria-hidden="true" id="forward"></i>
+            <i class="fa fa-random" title="shuffle" aria-hidden="true" id="shuffle"></i>
+            <i class="fa fa-repeat" title="repeat" aria-hidden="true" id="repeat"></i>
+    
+          <!--  <i class="fa fa-volume-up" title="volume" aria-hidden="true" id="volume_slider"></i>  -->
+            
+
+            <div id="box">
+                <div id="progress"></div>
+            </div>
+        </center>
+        <script>
+            var audio = document.getElementById("audio-player");
+            var play = document.getElementById("play");
+            var replay = document.getElementById("replay");
+            var stop =  document.getElementById("stop");
+            var progress = document.getElementById("progress");
+            var box = document.getElementById("box");
+            var next = document.getElementById("forward");
+            var prev = document.getElementById("backward");
+            var shuffle = document.getElementById("shuffle");
+            var repeat = document.getElementById("repeat");
+           
+        //    var volume_slider = document.getElementById("volume_slider");
+        //    var set_volume = document.getElementById("volume_slider");
+
+play.onclick = function(){
+    if(this.className == "fa fa-play-circle"){
+        audio.play();
+        this.className = "fa fa-pause-circle";
+        this.title = "pause";
+    }
+    else{
+        audio.pause();
+        this.className = "fa fa-play-circle";
+        this.title = "play";
+    }
+};
+
+replay.onclick = function(){
+    audio.currentTime=0;
+    audio.play();
+    play.className = "fa fa-pause-circle";
+    play.title = "pause";
+};
+
+// repeat.onclick = function(){
+//             var time = (100/audio.duration)*audio.currentTime;
+//             if(time == 100){
+//                 audio.currentTime = 0;
+//                 audio.play();
+//                 play.className = "fa fa-pause-circle";
+//                 play.title = "pause";
+//             }
+//         };
+
+var count = 0;
+repeat.onclick = function(){
+    count++;
+    if(count%2==1 && count>0){
+    audio.loop = true;
+    audio.play();
+    if(this.className == "fa fa-repeat"){
+        this.className = "fa fa-undo";
+        this.title = "stop repeat";
+    }
+    else{
+        this.className = "fa fa-repeat";
+        this.title = "repeat";
+    }
+    }
+    else{
+        audio.loop = false;
+    audio.play();
+    if(this.className == "fa fa-repeat"){
+        this.className = "fa fa-undo";
+        this.title = "stop repeat";
+    }
+    else{
+        this.className = "fa fa-repeat";
+        this.title = "repeat";
+    }
+    }
+};
+// repeat.ondblclick = function()
+// {
+//     audio.loop = false;
+//     audio.play();
+// };
+
+
+stop.onclick = function(){
+    audio.currentTime=0;
+    audio.pause();
+    play.className = "fa fa-play-circle";
+    play.title = "play";
+};
+
+audio.ontimeupdate = function(){
+    var time = (100/audio.duration)*audio.currentTime;
+    progress.style.width = time+"%";
+    box.onclick = function(x){
+        var p = x.offsetX / this.offsetWidth;
+        audio.currentTime = p * audio.duration;
+    }
+    audio.onended = function(){
+        if(this.currentTime == this.duration){
+           play.className = "fa fa-play-circle";
+           play.title = "play";
+           progress.style.width = "0%"; 
+        }
+        else{
+           play.className = "fa fa-pause-circle";
+           play.title = "pause";
+        }
+    }
+}
+if(audio.play()){
+    if(play.className == "fa fa-play-circle"){
+        play.className = "fa fa-pause-circle";
+        play.title = "pause";
+    }
+    else{
+        play.className = "fa fa-play-circle";
+        play.title = "play";
+    }
+}
+
+function myFunction(){
+        if(false)
+        {
+            play.className = "fa fa-pause-circle";
+        play.title = "pause";
+        }
+        else{
+        play.className = "fa fa-play-circle";
+        play.title = "play";
+        }
+}
+
+var audioname = document.getElementsByClassName("audio-name");
+//  var listen = document.getElementById("listen");
+//console.log(audioname.length);
+var audiolength = audioname.length;
+var name="";
+var x=0;
+ Object.entries(audioname).map((object,index)=>{
+     object[1].onclick=function()
+     {
+        var audiosrc = document.getElementById("audio-src");
+        audiosrc.src = audioname[index].innerHTML;
+        name = audioname[index].innerHTML;
+        document.getElementById("song-name").innerHTML = name;
+        x = index;
+        audio.load();
+        audio.play();
+        play.className = "fa fa-pause-circle-o";
+        play.title = "pause";
+        next.onclick = function(){
+            x++;
+            if(x<audiolength)
+            {
+                var audiosrc = document.getElementById("audio-src");
+                audiosrc.src = audioname[x].innerHTML;
+                name = audioname[x].innerHTML;
+                document.getElementById("song-name").innerHTML = name;
+                audio.load();
+                audio.play();
+            }
+            else{
+                x = 0;
+                var audiosrc = document.getElementById("audio-src");
+                audiosrc.src = audioname[x].innerHTML;
+                name = audioname[x].innerHTML;
+                document.getElementById("song-name").innerHTML = name;
+                audio.load();
+                audio.play();
+            }
+        }
+        prev.onclick = function(){
+            x--;
+            if(x<0){
+                x = audiolength-1;
+                var audiosrc = document.getElementById("audio-src");
+                audiosrc.src = audioname[x].innerHTML;
+                name = audioname[x].innerHTML;
+                document.getElementById("song-name").innerHTML = name;
+                audio.load();
+                audio.play();
+            }
+            else{
+                var audiosrc = document.getElementById("audio-src");
+                audiosrc.src = audioname[x].innerHTML;
+                name = audioname[x].innerHTML;
+                document.getElementById("song-name").innerHTML = name;
+                audio.load();
+                audio.play();
+            }
+        }
+
+var count1=0;
+        shuffle.onclick = function(){
+        count1++;
+    if(count1 % 2 == 1 && count1 > 0){
+        var audioindex = Math.floor(Math.random()*audiolength);
+        var audiosrc = document.getElementById("audio-src");
+        audiosrc.src = audioname[audioindex].innerHTML;
+        name = audioname[audioindex].innerHTML;
+        document.getElementById("song-name").innerHTML = name;
+        audio.load();
+        audio.play();
+        play.className = "fa fa-pause-circle-o";
+        play.title = "pause";
+
+    if(this.className == "fa fa-random"){
+        this.className = "fa fa-exchange";
+        this.title = "stop shuffle";
+    }
+    else{
+        this.className = "fa fa-random";
+        this.title = "shuffle";
+    }
+    }
+    else{
+        audio.play();
+    if(this.className == "fa fa-random"){
+        this.className = "fa fa-exchange";
+        this.title = "stop shuffle";
+    }
+    else{
+        this.className = "fa fa-random";
+        this.title = "shuffle";
+    }
+    }
+        };
+
+        audio.addEventListener("ended", function(){
+            x++;
+            if(x==audiolength)
+            {x=0;}
+            var audiosrc = document.getElementById("audio-src");
+            audiosrc.src = audioname[x].innerHTML;
+            name = audioname[x].innerHTML;
+            document.getElementById("song-name").innerHTML = name;
+            audio.load();
+            audio.play();
+            if(audio.play()){
+    if(play.className == "fa fa-play-circle"){
+        play.className = "fa fa-pause-circle";
+        play.title = "pause";
+    }
+    else{
+        play.className = "fa fa-play-circle";
+        play.title = "play";
+    }
+}
+        })
+     }
+ });
+/*
+ volume_slider.oninput = function(){
+     audio.volume = this.volume;
+     set_volume.innerHTML = "Volume : "+ this.value * 100 + "%";
+ }*/
+        </script>
+    </body>
+</html>

@@ -1,0 +1,314 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        #header {
+            background-color: rgb(255, 70, 0);
+            color: rgb(255, 255, 255);
+            font-size: 30px;
+            text-align: center;
+        }
+
+        body {
+            font-family: verdana, tohama;
+            font-size: 13px;
+            background-color: rgb(100, 50, 184);
+            overflow: hidden;
+        }
+
+        body a {
+            text-decoration: none;
+        }
+
+        .small_image {
+            width: 100px;
+            float: left;
+        }
+
+        #wrapper {
+            width: 100%;
+            max-width: 1000px;
+            height: 640px;
+            float: left;
+            /* margin-left:auto;
+     margin-right:auto;*/
+            background-color: rgb(50, 50, 50);
+        }
+
+        #song {
+            width: 200px;
+            height: 300px;
+            background-color: rgb(1, 142, 167);
+            margin: 20px;
+            padding: 4px;
+            color: rgb(255, 255, 255);
+            float: left;
+        }
+
+        .image {
+            width: 100%;
+            height: 200px;
+        }
+
+        .time {
+            color: rgb(0, 0, 0);
+            font-size: 11px;
+            text-align: right;
+        }
+
+        #para {
+            color: limegreen;
+            font-size: 20px;
+            margin-left: 25px;
+        }
+
+        #sliderbox {
+            position: relative;
+            width: 2000px;
+            animation-name: slideranimation;
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+        }
+
+        #container {
+            width: 1000px;
+            overflow: hidden;
+        }
+
+        @keyframes slideranimation {
+            0% {
+                left: 0px;
+            }
+
+            17% {
+                left: 0px;
+            }
+
+            20% {
+                left: -250px;
+            }
+
+            37% {
+                left: -250px;
+            }
+
+            40% {
+                left: -500px;
+            }
+
+            57% {
+                left: -500px;
+            }
+
+            60% {
+                left: -750px;
+            }
+
+            77% {
+                left: -750px;
+            }
+
+            80% {
+                left: -1000px;
+            }
+
+            97% {
+                left: -1000px;
+            }
+
+            100% {
+                left: 0px;
+            }
+        }
+
+        #scroll {
+            background-color: aqua;
+            float: left;
+            height: 640px;
+            width: 340px;
+            margin-left: 10px;
+            overflow: auto;
+            /*    white-space: nowrap;*/
+        }
+
+        #upload {
+            float: left;
+            position: fixed;
+            cursor: pointer;
+        }
+
+        #uploadBtn{
+            background-color:#008CBA;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        #playlist {
+            color: red;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        a {
+            color: #000;
+        }
+
+        #songname a:hover {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <img src="http://127.0.0.1:4000/./images/rihanna3.jpg" style="height:225px;float:left;" />
+            <img src="http://127.0.0.1:4000/./images/alan2.jpg" class="small_image" />
+            <img src="http://127.0.0.1:4000/./images/karra1.jpg" class="small_image" />
+
+            <br>Su Fy<br>
+            <div style="font-size:20px;">where Music Lives</div>
+            <br style="clear:both;" />
+        </div>
+
+        <p id="para"><i><u>Recently played:</u></i></p>
+        <div id="container">
+            <div id="sliderbox">
+                <a href="http://127.0.0.1:4000/audio/Drake - KeKe Do You Love Me (In My Feelings) (Official Video).mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/drake5.jpg" class="image" /><br> <br>
+                        Song: <b>Keke</b><br><br>
+                        Artist: <b>Drake</b><br><br>
+                        <div class="time">5 minutes ago</div><br>
+                    </div>
+                </a>
+                <a href="http://127.0.0.1:4000/audio/Cartoon_-_On_On_feat_Daniel_Levi_NCS_Release[ListenVid.com].mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/ellie5.jpg" class="image" /><br> <br>
+                        Song: <b>Love Me Like You Do</b><br><br>
+                        Artist: <b>Ellie Goulding</b><br><br>
+                        <div class="time">10 minutes ago</div><br>
+                    </div>
+                </a>
+
+                <a href="http://127.0.0.1:4000/audio/Justin_Bieber_-_Sorry_PURPOSE_The_Movement[ListenVid.com].mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/justin4.jpg" class="image" /><br> <br>
+                        Song: <b>Sorry</b><br><br>
+                        Artist: <b>Justin Bieber</b><br><br>
+                        <div class="time">15 minutes ago</div><br>
+                    </div>
+                </a>
+
+                <a href="http://127.0.0.1:4000/audio/Shape Of You - Ed Sheeran (320 Kbps)(MeraMasti.In).mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/selena8.jpg" class="image" /><br> <br>
+                        Song: <b>Wolves</b><br><br>
+                        Artist: <b>Selena Gomez</b><br><br>
+                        <div class="time">20 minutes ago</div><br>
+                    </div>
+                </a>
+
+                <a href="http://127.0.0.1:4000/audio/Alan Walker - Faded (Reworks).mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/alan3.jpg" class="image" /><br> <br>
+                        Song: <b>Faded</b><br><br>
+                        Artist: <b>Alan Walker</b><br><br>
+                        <div class="time">25 minutes ago</div><br>
+                    </div>
+                </a>
+
+                <a href="http://127.0.0.1:4000/audio/Culture Code - Make Me Move (feat. KARRA)(playvk.com).mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/karra1.jpg" class="image" /><br> <br>
+                        Song: <b>Make Me Move</b><br><br>
+                        Artist: <b>Karra</b><br><br>
+                        <div class="time">30 minutes ago</div><br>
+                    </div>
+                </a>
+
+                <a href="http://127.0.0.1:4000/audio/Despacito-Lyrics in English.mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/luis1.jpg" class="image" /><br> <br>
+                        Song: <b>Despacito</b><br><br>
+                        Artist: <b>Luis Fonsi</b><br><br>
+                        <div class="time">35 minutes ago</div><br>
+                    </div>
+                </a>
+
+                <a href="http://127.0.0.1:4000/audio/ZAYN - Dusk Till Dawn ft. Sia (Emma Heesters Cover).mp3">
+                    <div id="song">
+                        <img src="http://127.0.0.1:4000/./images/rihanna1.jpg" class="image" /><br> <br>
+                        Song: <b>Diamonds</b><br><br>
+                        Artist: <b>Rihanna</b><br><br>
+                        <div class="time">40 minutes ago</div><br>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br style="clear:both;" />
+    </div>
+    <div id="scroll">
+        <div id="upload">
+            <form action="/audioupload" method="POST" enctype="multipart/form-data">
+                <input type="file" accept="audio/*" name="fileupload">
+                <input type="submit" value="upload" id="uploadBtn">
+            </form>
+        </div><br><br><br><br>
+        <div id="playlist"><b><u>My Playlist</u></b></div>
+        <br><br>
+        <table>
+            <tr>
+                <th><u>Songs<br></br></u></th>
+            </tr>
+            <% data.forEach(function(item){ %>
+            <tr>
+                <td>
+                    <div id="songname"><a href="/listen?name=<%= item.name %>"><%= item.name %></a>
+                        <form action="/audio_playlist" method="POST" id="addplaylist" onsubmit="myFunction()">
+                            <input type="text" name="musicname" value="<%= item.name %>" hidden>
+                            <input type="submit" style="position:absolute; opacity: 0;margin-top: 9px">
+                        </form>
+                        <i class="fa fa-heart" style="color:white;margin-left: 20px; cursor: pointer;" id="heart"></i>
+                    </div>
+                </td>
+            </tr>
+            <% }) %>
+        </table><br><br><br><br>
+        <center><button onclick="openPage()" style="background-color:#f44336;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;">Go To</button></center>
+    </div>
+    <script>
+        if(window.history.replaceState){
+                window.history.replaceState( null, null, window.location.href );
+            }
+            function openPage()
+            {
+                window.open("http://localhost:4000/listen/", '_self');
+            }
+            function myFunction()
+            {
+                var heart = document.getElementById('heart');
+                heart.style.color = 'red';
+            }
+    </script>
+</body>
+
+</html>

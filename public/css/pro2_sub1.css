@@ -1,0 +1,54 @@
+#image1{
+     width: 400px;
+     height: 500px;
+     background-image: url(./pexel3.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body{
+    background-color: darkviolet;
+}
+
+#box{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 30px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#progress{
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: red;
+    float: left;
+    border-radius: 5px;
+}
+
+#replay{
+    font-size: 30px;
+    position: absolute;
+    left: 620px;
+    top: 540px;
+    cursor: pointer;
+}
+
+#play{
+    font-size: 30px;
+    position: absolute;
+    left: 670px;
+    top: 540px;
+    cursor: pointer;
+}
+
+#stop{
+    font-size: 30px;
+    position: absolute;
+    left: 720px;
+    top: 540px;
+    cursor: pointer;
+}
